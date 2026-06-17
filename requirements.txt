@@ -1,0 +1,8 @@
+﻿pandas>=2.2.0
+numpy>=1.26.0
+scikit-learn>=1.4.0
+matplotlib>=3.8.0
+pytest>=8.0.0
+ruff>=0.4.0
+black>=24.0.0
+mypy>=1.8.0
