@@ -1,4 +1,6 @@
-﻿import pandas as pd
+﻿"""Market feature engineering utilities."""
+
+import pandas as pd
 
 
 def compute_returns(price_series: pd.Series) -> pd.Series:
@@ -12,6 +14,9 @@ def compute_returns(price_series: pd.Series) -> pd.Series:
 
 def rolling_volatility(returns: pd.Series, window: int = 20) -> pd.Series:
     """Compute rolling volatility from returns."""
+    if returns.empty:
+        raise ValueError("Returns series is empty.")
+
     if window <= 1:
         raise ValueError("Window must be greater than 1.")
 

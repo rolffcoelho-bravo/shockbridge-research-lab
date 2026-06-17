@@ -1,13 +1,20 @@
-﻿import pandas as pd
+﻿"""Public-safe volatility regime classification."""
+
+import pandas as pd
 
 
 def classify_volatility_regime(volatility: pd.Series) -> pd.Series:
-    """Classify volatility into simple public-safe regimes."""
-    if volatility.empty:
-        raise ValueError("Volatility series is empty.")
+    """Classify volatility into low, medium, and high regimes.
 
-    low_threshold = volatility.quantile(0.33)
-    high_threshold = volatility.quantile(0.66)
+    This is a transparent public demonstration, not proprietary ShockBridge scoring.
+    """
+    clean_volatility = volatility.dropna()
+
+    if clean_volatility.empty:
+        raise ValueError("Volatility series is empty after dropping missing values.")
+
+    low_threshold = clean_volatility.quantile(0.33)
+    high_threshold = clean_volatility.quantile(0.66)
 
     def label(value: float) -> str:
         if value <= low_threshold:
@@ -16,4 +23,4 @@ def classify_volatility_regime(volatility: pd.Series) -> pd.Series:
             return "high"
         return "medium"
 
-    return volatility.apply(label)
+    return clean_volatility.apply(label)

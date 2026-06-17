@@ -1,8 +1,10 @@
-﻿import pandas as pd
+﻿"""Backtesting utilities for public-safe regime overlay examples."""
+
+import pandas as pd
 
 
 def simple_regime_overlay_signal(regime: pd.Series) -> pd.Series:
-    """Create a simple public-safe exposure signal from volatility regimes."""
+    """Create a simple exposure signal from volatility regimes."""
     mapping = {
         "low": 1.0,
         "medium": 0.7,

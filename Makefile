@@ -1,16 +1,16 @@
 ﻿install:
-pip install -r requirements.txt
+	python -m pip install -r requirements.txt
 
 test:
-pytest
-
-lint:
-ruff check src tests examples
-
-format:
-black src tests examples
+	python -m pytest -q
 
 run:
-python examples/run_full_pipeline.py
+	python examples/run_full_pipeline.py
+
+lint:
+	ruff check src tests examples
+
+format:
+	black src tests examples
 
 all: install test run

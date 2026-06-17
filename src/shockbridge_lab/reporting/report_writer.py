@@ -1,4 +1,6 @@
-﻿from pathlib import Path
+﻿"""Report writing utilities."""
+
+from pathlib import Path
 
 
 def write_text_report(output_path: str | Path, title: str, body: str) -> Path:

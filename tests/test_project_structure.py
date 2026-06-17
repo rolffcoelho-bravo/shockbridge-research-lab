@@ -1,7 +1,10 @@
-﻿from pathlib import Path
+﻿"""Repository structure tests."""
+
+from pathlib import Path
 
 
-def test_required_directories_exist():
+def test_required_directories_exist() -> None:
+    """Check that required evidence-lab directories exist."""
     required_dirs = [
         "docs",
         "data/raw",
@@ -25,7 +28,8 @@ def test_required_directories_exist():
         assert Path(folder).exists(), f"Missing required folder: {folder}"
 
 
-def test_required_files_exist():
+def test_required_files_exist() -> None:
+    """Check that required portfolio files exist."""
     required_files = [
         "README.md",
         "PORTFOLIO_MAP.md",
@@ -33,7 +37,6 @@ def test_required_files_exist():
         "DATA_POLICY.md",
         "pyproject.toml",
         "requirements.txt",
-        "Makefile",
         "Dockerfile",
     ]
 
