@@ -1,13 +1,10 @@
-﻿"""Public-safe volatility regime classification."""
+"""Public-safe volatility regime classification."""
 
 import pandas as pd
 
 
 def classify_volatility_regime(volatility: pd.Series) -> pd.Series:
-    """Classify volatility into low, medium, and high regimes.
-
-    This is a transparent public demonstration, not proprietary ShockBridge scoring.
-    """
+    """Classify volatility into low, medium, and high regimes."""
     clean_volatility = volatility.dropna()
 
     if clean_volatility.empty:

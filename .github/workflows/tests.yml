@@ -1,4 +1,4 @@
-﻿name: tests
+name: tests
 
 on:
   push:
@@ -29,6 +29,6 @@ jobs:
         run: |
           python -m pytest -q
 
-      - name: Run public demo pipeline
+      - name: Run demo pipeline
         run: |
           python examples/run_full_pipeline.py

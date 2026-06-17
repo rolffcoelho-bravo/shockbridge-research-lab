@@ -1,4 +1,4 @@
-﻿"""Report writing utilities."""
+"""Report writing utilities."""
 
 from pathlib import Path
 

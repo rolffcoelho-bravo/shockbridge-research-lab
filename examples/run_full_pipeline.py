@@ -1,4 +1,4 @@
-﻿"""Run the public-safe ShockBridge Research Lab demo pipeline."""
+"""Run the public-safe ShockBridge Research Lab demo pipeline."""
 
 import numpy as np
 import pandas as pd
@@ -18,7 +18,11 @@ def main() -> None:
 
     dates = pd.date_range("2020-01-01", periods=500, freq="B")
     shocks = np.random.normal(0.0003, 0.01, size=len(dates))
-    prices = pd.Series(100 * (1 + shocks).cumprod(), index=dates, name="demo_price")
+    prices = pd.Series(
+        100 * (1 + shocks).cumprod(),
+        index=dates,
+        name="demo_price",
+    )
 
     returns = compute_returns(prices)
     volatility = rolling_volatility(returns, window=20)

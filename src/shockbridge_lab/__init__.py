@@ -1,4 +1,4 @@
-﻿"""ShockBridge Research Lab.
+"""ShockBridge Research Lab.
 
 Public evidence portfolio for macro-financial research engineering.
 """

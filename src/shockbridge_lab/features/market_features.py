@@ -1,4 +1,4 @@
-﻿"""Market feature engineering utilities."""
+"""Market feature engineering utilities."""
 
 import pandas as pd
 

@@ -1,4 +1,4 @@
-﻿"""Backtesting utilities for public-safe regime overlay examples."""
+"""Backtesting utilities for public-safe regime overlay examples."""
 
 import pandas as pd
 
