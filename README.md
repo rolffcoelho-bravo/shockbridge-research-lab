@@ -34,7 +34,7 @@ How can macro-financial shocks be studied through reproducible data pipelines, v
 
 ## Repository Status
 
-This repository is under active development as a public technical CV and research evidence portfolio.
+This repository is under active development as a public research evidence portfolio demonstrating macro-financial research engineering, reproducible Python workflows, model validation discipline, and decision-oriented reporting.
 
 ## Professional Positioning
 
@@ -54,3 +54,4 @@ This project supports applications and direct outreach for roles such as:
 Rodolfo Pereira  
 ShockBridge Pulse  
 www.shockbridgepulse.com
+

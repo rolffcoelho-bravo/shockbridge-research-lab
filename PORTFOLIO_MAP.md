@@ -1,8 +1,8 @@
 ﻿# Portfolio Map
 
-This file maps professional CV claims to concrete evidence inside the repository.
+This file maps professional capabilities to concrete evidence inside the repository.
 
-| CV / Profile Claim | Evidence in This Repository | Why It Matters |
+| Capability Claim | Evidence in This Repository | Why It Matters |
 |---|---|---|
 | Python research engineering | src/shockbridge_lab/, examples/run_full_pipeline.py | Shows ability to structure research code beyond notebooks |
 | Financial time-series work | eatures/, olatility/, alidation/ | Shows domain specialization in market data |
@@ -24,3 +24,4 @@ The purpose of this repository is not to reveal proprietary ShockBridge Pulse me
 2. Code like a serious quant/data scientist.
 3. Validate models like someone trusted with capital.
 4. Communicate results like a research desk.
+
