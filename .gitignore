@@ -24,3 +24,5 @@ output/
 Thumbs.db
 Desktop.ini
 New Text Document.txt
+reports/_*.png
+reports/regime_question_one_page.html
