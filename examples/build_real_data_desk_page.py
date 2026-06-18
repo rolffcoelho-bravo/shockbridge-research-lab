@@ -17,7 +17,7 @@ DATA = ROOT / "data" / "public" / "public_cross_asset_prices.csv"
 REPORTS = ROOT / "reports"
 CHART = REPORTS / "_real_public_stress_breadth_chart.png"
 HTML = REPORTS / "regime_question_one_page.html"
-PDF = REPORTS / "regime_question_one_page.pdf"
+PDF = REPORTS / "ShockBridge_Public_Cross_Asset_Stress_Breadth_Desk_Note.pdf"
 
 TICKERS = ["SPY", "QQQ", "TLT", "GLD", "USO", "UUP", "HYG"]
 
@@ -408,13 +408,56 @@ h1 {{
     margin-bottom: 2.15mm;
 }}
 .footer {{
-    margin-top: auto;
-    padding-top: 3mm;
-    border-top: 1px solid #334155;
+    margin-top: 5mm;
+    padding-top: 4mm;
+    border-top: 1px solid rgba(214,161,74,0.42);
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
+    gap: 12mm;
     color: #94a3b8;
-    font-size: 7.2pt;
+}}
+.footer-left,
+.footer-right {{
+    font-size: 7.4pt;
+    line-height: 1.35;
+    color: rgba(226,232,240,0.72);
+}}
+.footer-left {{
+    max-width: 58%;
+}}
+.footer-right {{
+    max-width: 34%;
+    text-align: right;
+}}
+.footer .line1 {{
+    color: rgba(248,250,252,0.88);
+    font-weight: 600;
+}}
+.footer .line2 {{
+    margin-top: 1mm;
+    color: rgba(203,213,225,0.70);
+}}
+.footer-left,
+.footer-right {{
+    font-size: 7.4pt;
+    line-height: 1.35;
+    color: rgba(226,232,240,0.72);
+}}
+.footer-left {{
+    max-width: 58%;
+}}
+.footer-right {{
+    max-width: 34%;
+    text-align: right;
+}}
+.footer .line1 {{
+    color: rgba(248,250,252,0.88);
+    font-weight: 600;
+}}
+.footer .line2 {{
+    margin-top: 1mm;
+    color: rgba(203,213,225,0.70);
 }}
 </style>
 </head>
@@ -457,8 +500,14 @@ Real public market data only: SPY, QQQ, TLT, GLD, USO, UUP, HYG. No synthetic da
 </div>
 
 <div class="footer">
-    <div>Rodolfo P. | ShockBridge Research Lab | www.shockbridgepulse.com | rolffcoelho@hotmail.com</div>
-    <div>© 2026 Rodolfo P. | Public research evidence repository</div>
+    <div class="footer-left">
+        <div class="line1">Rodolfo P. | ShockBridge Research Lab</div>
+        <div class="line2">www.shockbridgepulse.com | rolffcoelho@hotmail.com</div>
+    </div>
+    <div class="footer-right">
+        <div class="line1">© 2026 Rodolfo P.</div>
+        <div class="line2">Public research evidence repository</div>
+    </div>
 </div>
 
 </div>
