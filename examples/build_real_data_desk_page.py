@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "public" / "public_cross_asset_prices.csv"
 REPORTS = ROOT / "reports"
 CHART = REPORTS / "_real_public_stress_breadth_chart.png"
+FIGURE = ROOT / "figures" / "public_cross_asset_stress_breadth.png"
 HTML = REPORTS / "regime_question_one_page.html"
 PDF = REPORTS / "ShockBridge_Public_Cross_Asset_Stress_Breadth_Desk_Note.pdf"
 
@@ -211,6 +212,9 @@ def build_chart(stress, breadth):
     fig.tight_layout()
     fig.savefig(CHART, dpi=240, bbox_inches="tight", facecolor=fig.get_facecolor())
     plt.close(fig)
+
+    FIGURE.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(CHART, FIGURE)
 
     return CHART
 
