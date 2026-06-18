@@ -1,4 +1,4 @@
-# Notice
+﻿# Notice
 
 ShockBridge Research Lab: Public Evidence Layer for Macro-Financial Shock Transmission Research
 
@@ -10,4 +10,5 @@ Author: Rodolfo Pereira
 Website: www.shockbridgepulse.com  
 Email: rolffcoelho@hotmail.com  
 
-© 2026 Rodolfo Pereira. Free to read and use with attribution. Please cite the author and repository when referencing this work.
+Â© 2026 Rodolfo P.. Free to read and use with attribution. Please cite the author and repository when referencing this work.
+
