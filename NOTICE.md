@@ -10,5 +10,6 @@ Author: Rodolfo Pereira
 Website: www.shockbridgepulse.com  
 Email: rolffcoelho@hotmail.com  
 
-Â© 2026 Rodolfo P.. Free to read and use with attribution. Please cite the author and repository when referencing this work.
+Â© 2026 Rodolfo P. Free to read and use with attribution. Please cite the author and repository when referencing this work.
+
 
