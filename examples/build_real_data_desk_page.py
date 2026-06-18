@@ -85,23 +85,73 @@ def download_real_public_data(refresh=False):
         raise RuntimeError("No public market data returned by yfinance. I will not fabricate data.")
 
     if isinstance(raw.columns, pd.MultiIndex):
-        close = raw["Close"].copy()
+        if "Close" in raw.columns.get_level_values(0):
+            close = raw["Close"].copy()
+        else:
+            raise RuntimeError("Could not locate Close prices in yfinance output.")
     else:
-        close = raw[["Close"]].copy()
+        close = raw.copy()
 
     close = close.dropna(how="all")
     close.index.name = "date"
     close = close.reset_index()
-    close.to_csv(DATA, index=False)
 
+    # Force clean CSV schema: date + tickers
+    close.columns = [str(c).strip() for c in close.columns]
+    if close.columns[0].lower() != "date":
+        close = close.rename(columns={close.columns[0]: "date"})
+
+    close.to_csv(DATA, index=False)
     return DATA
+
+
+def _read_public_price_csv():
+    """
+    Robust reader for the public cross-asset CSV.
+    Handles both the intended schema:
+        date, SPY, QQQ, ...
+    and accidental yfinance multi-header CSVs.
+    """
+    df = pd.read_csv(DATA)
+    df.columns = [str(c).strip() for c in df.columns]
+
+    if "date" in [c.lower() for c in df.columns]:
+        rename = {c: "date" for c in df.columns if c.lower() == "date"}
+        return df.rename(columns=rename)
+
+    # Repair accidental multi-header CSVs by searching for a row containing Date/date.
+    raw = pd.read_csv(DATA, header=None)
+    for i in range(min(8, len(raw))):
+        row = raw.iloc[i].astype(str).str.strip()
+        if row.str.lower().eq("date").any():
+            header = row.tolist()
+            repaired = raw.iloc[i + 1:].copy()
+            repaired.columns = header
+            repaired = repaired.loc[:, ~repaired.columns.duplicated()]
+            repaired.columns = [str(c).strip() for c in repaired.columns]
+            rename = {c: "date" for c in repaired.columns if c.lower() == "date"}
+            return repaired.rename(columns=rename)
+
+    return df
 
 
 def load_prices():
     if not DATA.exists():
-        raise FileNotFoundError("Real public market data not found. Run the pipeline with data download enabled.")
+        download_real_public_data(refresh=True)
 
-    df = pd.read_csv(DATA)
+    df = _read_public_price_csv()
+
+    if "date" not in df.columns:
+        # Last safe attempt: regenerate the CSV with the corrected downloader.
+        download_real_public_data(refresh=True)
+        df = _read_public_price_csv()
+
+    if "date" not in df.columns:
+        raise KeyError(
+            "Expected a 'date' column in public_cross_asset_prices.csv after repair/regeneration. "
+            f"Found columns: {list(df.columns)}"
+        )
+
     df["date"] = pd.to_datetime(df["date"], errors="coerce")
     df = df.dropna(subset=["date"]).sort_values("date")
 
