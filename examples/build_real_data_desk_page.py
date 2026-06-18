@@ -309,7 +309,7 @@ html, body {{
     border: 1px solid #d6a14a;
     height: 100%;
     box-sizing: border-box;
-    padding: 8mm 9mm 6mm 9mm;
+    padding: 8mm 9mm 10mm 9mm;
     display: flex;
     flex-direction: column;
 }}
@@ -388,9 +388,10 @@ h1 {{
     border: 1px solid #d6a14a;
     border-radius: 4mm;
     background: rgba(11,18,32,0.84);
-    padding: 4.2mm 6mm;
+    padding: 4.2mm 6mm 3.8mm 6mm;
     margin-top: 0;
-    flex: 1;
+    margin-bottom: 5mm;
+    flex: 0 0 auto;
 }}
 .readout h2 {{
     color: #f5c76b;
@@ -408,35 +409,41 @@ h1 {{
     margin-bottom: 2.15mm;
 }}
 .footer {{
-    margin-top: 5mm;
-    padding-top: 4mm;
-    border-top: 1px solid rgba(214,161,74,0.42);
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 12mm;
+    gap: 14mm;
     color: #94a3b8;
+    flex: 0 0 auto;
 }}
+
 .footer-left,
 .footer-right {{
-    font-size: 7.4pt;
-    line-height: 1.35;
-    color: rgba(226,232,240,0.72);
+    font-size: 6.9pt;
+    line-height: 1.25;
+    color: rgba(203,213,225,0.76);
 }}
+
 .footer-left {{
     max-width: 58%;
 }}
+
 .footer-right {{
     max-width: 34%;
     text-align: right;
 }}
+
 .footer .line1 {{
     color: rgba(248,250,252,0.88);
     font-weight: 600;
 }}
+
 .footer .line2 {{
-    margin-top: 1mm;
-    color: rgba(203,213,225,0.70);
+    margin-top: 0.7mm;
+    color: rgba(203,213,225,0.68);
 }}
 .footer-left,
 .footer-right {{
