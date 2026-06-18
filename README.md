@@ -1,5 +1,17 @@
 ﻿# ShockBridge Research Lab
 
+<!-- SHOCKBRIDGE_QUESTION_GRAPHIC_START -->
+
+## The core research question
+
+**When does a market shock become a regime problem?**
+
+The public demo generates the figure below. It is intentionally public-safe: it explains the research logic without exposing private thresholds, weights, proprietary diagnostics, or action rules.
+
+![ShockBridge regime question map](figures/shockbridge_regime_question_map.svg)
+
+<!-- SHOCKBRIDGE_QUESTION_GRAPHIC_END -->
+
 ShockBridge Research Lab is a macro-financial research project focused on how market stress travels across asset classes before it becomes obvious in headline data.
 
 The project studies cross-market shock transmission using high-dimensional financial data, volatility regimes, multiblock dependence, macro confirmation layers, and research-desk interpretation.
@@ -88,5 +100,3 @@ Email: rolffcoelho@hotmail.com
 © 2026 Rodolfo P. Free to read and use with attribution. Please cite the author and repository when referencing this work.
 
 <!-- SHOCKBRIDGE_PUBLIC_FOOTER_END -->
-
-
