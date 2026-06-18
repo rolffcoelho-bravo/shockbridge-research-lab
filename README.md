@@ -59,6 +59,18 @@ Public repository status: sanitized evidence layer.
 
 Private methodology status: locked v4.3 macro + LBMA gold confirmation sidecar on top of the locked v4.1 market diagnostic.
 
+<!-- SHOCKBRIDGE_PUBLIC_GRAPHIC_START -->
+
+## Public research architecture
+
+This repository presents the public evidence layer of ShockBridge Research Lab: a research framework for studying how stress propagates across macro-financial systems before it becomes obvious in headline data.
+
+The figure below summarizes the public-facing logic of the project. It is intentionally conceptual and does not disclose private thresholds, weights, proprietary diagnostics, or action rules.
+
+![ShockBridge public evidence architecture](figures/shockbridge_public_evidence_architecture.svg)
+
+<!-- SHOCKBRIDGE_PUBLIC_GRAPHIC_END -->
+
 <!-- SHOCKBRIDGE_PUBLIC_FOOTER_START -->
 
 ---
