@@ -23,24 +23,48 @@ PDF = REPORTS / "ShockBridge_Public_Cross_Asset_Stress_Breadth_Desk_Note.pdf"
 TICKERS = ["SPY", "QQQ", "TLT", "GLD", "USO", "UUP", "HYG"]
 
 BROWSER_CANDIDATES = [
+    # Windows
     r"C:\Program Files\Google\Chrome\Application\chrome.exe",
     r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
     r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
     r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+
+    # Linux / GitHub Actions
+    "/usr/bin/google-chrome",
+    "/usr/bin/google-chrome-stable",
+    "/usr/bin/chromium",
+    "/usr/bin/chromium-browser",
+    "/snap/bin/chromium",
+
+    # macOS
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
 ]
 
 
 def find_browser():
     for candidate in BROWSER_CANDIDATES:
         if Path(candidate).exists():
-            return candidate
+            return str(candidate)
 
-    for name in ["chrome", "chrome.exe", "msedge", "msedge.exe"]:
+    for name in [
+        "google-chrome",
+        "google-chrome-stable",
+        "chromium",
+        "chromium-browser",
+        "chrome",
+        "chrome.exe",
+        "msedge",
+        "msedge.exe",
+    ]:
         found = shutil.which(name)
         if found:
             return found
 
-    raise RuntimeError("No Chrome or Microsoft Edge executable found for PDF export.")
+    raise RuntimeError(
+        "No Chrome/Chromium/Edge executable found for PDF export. "
+        "Install Chrome/Chromium or run this pipeline on a machine with a headless browser."
+    )
 
 
 def download_real_public_data(refresh=False):
@@ -538,6 +562,7 @@ def export_pdf():
         "--headless=new",
         "--disable-gpu",
         "--no-sandbox",
+        "--disable-dev-shm-usage",
         "--no-pdf-header-footer",
         "--print-to-pdf=" + str(PDF),
         str(HTML.resolve().as_uri()),
