@@ -1,0 +1,385 @@
+﻿from pathlib import Path
+from datetime import datetime
+
+ROOT = Path(__file__).resolve().parents[1]
+OUTPUT = ROOT / "reports" / "regime_question_one_page.html"
+
+def build_regime_question_one_page() -> Path:
+    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    generated = datetime.utcnow().strftime("%Y-%m-%d UTC")
+
+    html = r"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ShockBridge Research Desk Note</title>
+<style>
+:root {
+  --bg: #05070d;
+  --panel: #0b1220;
+  --panel2: #101827;
+  --gold: #d6a14a;
+  --gold2: #f5c76b;
+  --blue: #38bdf8;
+  --red: #ef4444;
+  --muted: #94a3b8;
+  --text: #f8fafc;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+.page {
+  width: 1240px;
+  min-height: 1680px;
+  margin: 0 auto;
+  padding: 42px 48px;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(56,189,248,0.16), transparent 32%),
+    radial-gradient(circle at 82% 22%, rgba(239,68,68,0.15), transparent 34%),
+    linear-gradient(135deg, #05070d 0%, #08111f 45%, #111827 100%);
+  border: 1px solid rgba(214,161,74,0.45);
+}
+.kicker {
+  display: flex;
+  justify-content: space-between;
+  color: var(--gold2);
+  font-size: 13px;
+  letter-spacing: 1.7px;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(214,161,74,0.35);
+  padding-bottom: 14px;
+}
+h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 58px;
+  line-height: 1.02;
+  margin: 28px 0 10px 0;
+  color: #fff7ed;
+  letter-spacing: -1.5px;
+}
+.subtitle {
+  font-size: 22px;
+  color: var(--gold2);
+  margin-bottom: 24px;
+}
+.answer {
+  display: grid;
+  grid-template-columns: 0.9fr 1.5fr;
+  gap: 22px;
+  margin-bottom: 26px;
+}
+.box {
+  background: rgba(15,23,42,0.82);
+  border: 1px solid rgba(148,163,184,0.28);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 22px 60px rgba(0,0,0,0.35);
+}
+.box.gold {
+  border-color: rgba(214,161,74,0.55);
+}
+.label {
+  color: var(--gold2);
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+.big-answer {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 28px;
+  line-height: 1.24;
+}
+.small {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.45;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 14px;
+  margin-bottom: 26px;
+}
+.stage {
+  min-height: 155px;
+  background: rgba(10,18,32,0.92);
+  border: 1px solid rgba(148,163,184,0.25);
+  border-radius: 16px;
+  padding: 16px 14px;
+  position: relative;
+}
+.stage .n {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #020617;
+  border: 2px solid var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+.stage.hot .n { border-color: var(--gold2); }
+.stage.risk .n { border-color: var(--red); }
+.stage h3 {
+  font-size: 14px;
+  margin: 0 0 10px 0;
+  text-transform: uppercase;
+  color: #ffffff;
+  letter-spacing: 0.6px;
+}
+.stage p {
+  font-size: 12.5px;
+  line-height: 1.35;
+  color: #cbd5e1;
+  margin: 0;
+}
+.visual {
+  background: rgba(2,6,23,0.72);
+  border: 1px solid rgba(214,161,74,0.40);
+  border-radius: 22px;
+  padding: 18px;
+  margin-bottom: 26px;
+}
+.dash-row {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 26px;
+}
+.metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(148,163,184,0.18);
+  padding: 12px 0;
+}
+.metric:first-of-type { border-top: none; }
+.metric span:first-child { color: #cbd5e1; }
+.metric span:last-child { color: var(--gold2); font-weight: 800; }
+.bullets {
+  background: rgba(15,23,42,0.82);
+  border: 1px solid rgba(214,161,74,0.48);
+  border-radius: 22px;
+  padding: 26px 34px;
+}
+.bullets h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--gold2);
+  font-size: 32px;
+  margin: 0 0 16px 0;
+}
+.bullet {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 0;
+  border-top: 1px solid rgba(148,163,184,0.20);
+  font-size: 18px;
+  line-height: 1.38;
+}
+.bullet:first-of-type { border-top: none; }
+.icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--gold2);
+  color: var(--gold2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+}
+.footer {
+  margin-top: 24px;
+  border-top: 1px solid rgba(214,161,74,0.35);
+  padding-top: 14px;
+  text-align: center;
+  color: var(--gold);
+  font-size: 15px;
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="kicker">
+  <div>ShockBridge Research Lab</div>
+  <div>Public Research Desk Note · Generated __GENERATED__</div>
+</div>
+
+<h1>When Does a Market Shock Become a Regime Problem?</h1>
+<div class="subtitle">A public-safe institutional evidence map from isolated market movement to regime-relevant transmission.</div>
+
+<div class="answer">
+  <div class="box gold">
+    <div class="label">Answer upfront</div>
+    <div class="big-answer">A shock becomes regime-relevant when it spreads, persists, confirms across macro channels, and survives validation.</div>
+  </div>
+  <div class="box">
+    <div class="label">Research-desk interpretation</div>
+    <div class="small">
+      A large price move is not enough. The analytical question is whether the move remains isolated or becomes part of a broader transmission structure across rates, credit, FX, commodities, equities, volatility, and liquidity. The public artifact shows the logic without exposing private thresholds, weights, diagnostics, or action rules.
+    </div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="stage">
+    <div class="n">1</div>
+    <h3>Shock origin</h3>
+    <p>A move begins in one asset, channel, geography, or narrative.</p>
+  </div>
+  <div class="stage">
+    <div class="n">2</div>
+    <h3>Transmission</h3>
+    <p>Stress spreads beyond the first market into correlated risk channels.</p>
+  </div>
+  <div class="stage hot">
+    <div class="n">3</div>
+    <h3>Persistence</h3>
+    <p>The signal survives beyond a temporary volatility spike.</p>
+  </div>
+  <div class="stage hot">
+    <div class="n">4</div>
+    <h3>Confirmation</h3>
+    <p>Macro, curve, credit, FX, and commodities begin to align.</p>
+  </div>
+  <div class="stage risk">
+    <div class="n">5</div>
+    <h3>Validation</h3>
+    <p>The pattern survives leakage control, alternative windows, and robustness checks.</p>
+  </div>
+  <div class="stage risk">
+    <div class="n">6</div>
+    <h3>Regime risk</h3>
+    <p>The shock becomes structurally relevant instead of merely noisy.</p>
+  </div>
+</div>
+
+<div class="visual">
+<svg width="1110" height="470" viewBox="0 0 1110 470" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="g" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#38bdf8"/>
+    <stop offset="48%" stop-color="#fbbf24"/>
+    <stop offset="100%" stop-color="#ef4444"/>
+  </linearGradient>
+  <filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="1110" height="470" rx="16" fill="#06101f"/>
+<g opacity="0.25">
+  <path d="M0 70 H1110 M0 140 H1110 M0 210 H1110 M0 280 H1110 M0 350 H1110 M0 420 H1110" stroke="#334155"/>
+  <path d="M90 0 V470 M180 0 V470 M270 0 V470 M360 0 V470 M450 0 V470 M540 0 V470 M630 0 V470 M720 0 V470 M810 0 V470 M900 0 V470 M990 0 V470" stroke="#334155"/>
+</g>
+
+<text x="555" y="38" text-anchor="middle" font-size="20" font-weight="800" fill="#f8fafc">Transmission-to-Regime Evidence Stack</text>
+<text x="555" y="64" text-anchor="middle" font-size="12" fill="#94a3b8">Conceptual public map. No private calibration disclosed.</text>
+
+<!-- flowing transmission lines -->
+<g fill="none" stroke-width="2" opacity="0.82">
+  <path d="M70 250 C180 140 250 300 360 205 S560 145 700 245 S850 350 1020 155" stroke="#38bdf8"/>
+  <path d="M70 280 C190 190 310 360 440 250 S610 160 730 230 S880 250 1020 120" stroke="#60a5fa"/>
+  <path d="M70 310 C220 360 310 160 470 255 S620 330 760 205 S890 180 1020 105" stroke="#fbbf24"/>
+  <path d="M70 335 C250 410 360 260 510 305 S710 160 830 240 S930 290 1020 135" stroke="#f97316"/>
+  <path d="M70 365 C260 300 390 430 560 310 S740 250 870 180 S960 125 1020 95" stroke="#ef4444"/>
+</g>
+
+<!-- nodes -->
+<g filter="url(#glow)">
+  <circle cx="70" cy="250" r="6" fill="#38bdf8"/>
+  <circle cx="360" cy="205" r="6" fill="#fbbf24"/>
+  <circle cx="700" cy="245" r="6" fill="#f97316"/>
+  <circle cx="1020" cy="120" r="9" fill="#ef4444"/>
+  <circle cx="1020" cy="95" r="9" fill="#ef4444"/>
+  <circle cx="1020" cy="155" r="9" fill="#ef4444"/>
+</g>
+
+<!-- heatmap -->
+<g transform="translate(70,92)">
+  <text x="0" y="0" font-size="13" font-weight="800" fill="#f8fafc">Macro confirmation grid</text>
+  <g transform="translate(0,18)">
+    <rect x="0" y="0" width="34" height="25" fill="#1d4ed8"/><rect x="36" y="0" width="34" height="25" fill="#2563eb"/><rect x="72" y="0" width="34" height="25" fill="#fbbf24"/><rect x="108" y="0" width="34" height="25" fill="#f97316"/><rect x="144" y="0" width="34" height="25" fill="#ef4444"/>
+    <rect x="0" y="27" width="34" height="25" fill="#0f172a"/><rect x="36" y="27" width="34" height="25" fill="#1d4ed8"/><rect x="72" y="27" width="34" height="25" fill="#fbbf24"/><rect x="108" y="27" width="34" height="25" fill="#f97316"/><rect x="144" y="27" width="34" height="25" fill="#7f1d1d"/>
+    <rect x="0" y="54" width="34" height="25" fill="#1d4ed8"/><rect x="36" y="54" width="34" height="25" fill="#0f172a"/><rect x="72" y="54" width="34" height="25" fill="#fbbf24"/><rect x="108" y="54" width="34" height="25" fill="#ef4444"/><rect x="144" y="54" width="34" height="25" fill="#991b1b"/>
+  </g>
+</g>
+
+<!-- mini diagnostics -->
+<g transform="translate(760,90)">
+  <rect x="0" y="0" width="265" height="125" rx="12" fill="#0f172a" stroke="#334155"/>
+  <text x="18" y="28" font-size="13" font-weight="800" fill="#f8fafc">Out-of-sample discipline</text>
+  <polyline points="20,95 50,80 80,88 110,68 140,74 170,55 200,48 238,36" fill="none" stroke="#38bdf8" stroke-width="2"/>
+  <line x1="135" y1="40" x2="135" y2="100" stroke="#fbbf24" stroke-dasharray="4 4"/>
+  <text x="20" y="115" font-size="11" fill="#94a3b8">in-sample</text>
+  <text x="155" y="115" font-size="11" fill="#94a3b8">out-of-sample</text>
+</g>
+
+<g transform="translate(760,250)">
+  <rect x="0" y="0" width="265" height="130" rx="12" fill="#190b0b" stroke="#7f1d1d"/>
+  <text x="132" y="45" text-anchor="middle" font-size="18" font-weight="800" fill="#fecaca">REGIME RISK</text>
+  <text x="132" y="74" text-anchor="middle" font-size="27" font-weight="900" fill="#ffffff">ELEVATED</text>
+  <text x="132" y="103" text-anchor="middle" font-size="12" fill="#fecaca">only after evidence alignment</text>
+</g>
+
+<!-- labels -->
+<text x="70" y="440" font-size="13" fill="#93c5fd">isolated move</text>
+<text x="335" y="440" font-size="13" fill="#fbbf24">broadening stress</text>
+<text x="620" y="440" font-size="13" fill="#f97316">validated transmission</text>
+<text x="950" y="440" font-size="13" fill="#fecaca">regime relevance</text>
+</svg>
+</div>
+
+<div class="dash-row">
+  <div class="box">
+    <div class="label">Evidence question</div>
+    <div class="metric"><span>Is the move isolated?</span><span>Start</span></div>
+    <div class="metric"><span>Is stress spreading?</span><span>Transmission</span></div>
+    <div class="metric"><span>Does it persist?</span><span>Regime pressure</span></div>
+  </div>
+  <div class="box">
+    <div class="label">Desk discipline</div>
+    <div class="metric"><span>Separate signal from story</span><span>Required</span></div>
+    <div class="metric"><span>Control leakage risk</span><span>Required</span></div>
+    <div class="metric"><span>Check stability</span><span>Required</span></div>
+  </div>
+  <div class="box">
+    <div class="label">Public boundary</div>
+    <div class="metric"><span>Thresholds</span><span>Private</span></div>
+    <div class="metric"><span>Weights</span><span>Private</span></div>
+    <div class="metric"><span>Action rules</span><span>Private</span></div>
+  </div>
+</div>
+
+<div class="bullets">
+  <h2>Why this question matters</h2>
+  <div class="bullet"><div class="icon">1</div><div>A large price move alone does not define a regime shift.</div></div>
+  <div class="bullet"><div class="icon">2</div><div>A serious signal appears when stress transmits across markets rather than staying isolated.</div></div>
+  <div class="bullet"><div class="icon">3</div><div>Persistence separates temporary volatility from structural pressure.</div></div>
+  <div class="bullet"><div class="icon">4</div><div>Confirmation across macro and cross-asset channels increases decision relevance.</div></div>
+  <div class="bullet"><div class="icon">5</div><div>Validation matters because robust signals must survive overfit, leakage, and narrative bias.</div></div>
+</div>
+
+<div class="footer">
+Rodolfo Pereira · ShockBridge Research Lab · www.shockbridgepulse.com · rolffcoelho@hotmail.com · © 2026 Rodolfo P.
+</div>
+
+</div>
+</body>
+</html>
+"""
+    html = html.replace("__GENERATED__", generated)
+    OUTPUT.write_text(html, encoding="utf-8")
+    return OUTPUT
+
+if __name__ == "__main__":
+    output = build_regime_question_one_page()
+    print(f"Generated institutional one-page artifact: {output}")
