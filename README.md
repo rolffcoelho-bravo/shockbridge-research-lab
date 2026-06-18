@@ -1,57 +1,61 @@
 ﻿# ShockBridge Research Lab
 
-Public evidence portfolio for macro-financial research engineering.
+ShockBridge Research Lab is a macro-financial research project focused on how market stress travels across asset classes before it becomes obvious in headline data.
 
-This repository demonstrates reproducible Python-based research workflows for financial time series, volatility-regime analysis, macro-financial stress mapping, machine-learning validation, backtesting logic, and research reporting.
+The project studies cross-market shock transmission using high-dimensional financial data, volatility regimes, multiblock dependence, macro confirmation layers, and research-desk interpretation.
 
-This is not the private ShockBridge Pulse product engine. It is a public research evidence lab designed to show implementation quality, research discipline, validation standards, and professional documentation without exposing proprietary scoring logic, private signal thresholds, or commercial methodology.
+## Research focus
 
-## Core Question
+The lab is designed around one central question:
 
-How can macro-financial shocks be studied through reproducible data pipelines, volatility-regime features, machine-learning validation, and decision-oriented research outputs?
+> How does a shock travel across systems before it is fully priced?
 
-## What This Repository Demonstrates
+The research framework connects:
 
-- Python research project structure
-- Real-data research discipline
-- Financial time-series feature engineering
-- Volatility-regime analysis
-- Dependence mapping demonstrations
-- Machine-learning classification workflow
-- Walk-forward validation principles
-- Backtesting skeleton
-- Automated reporting structure
-- Public/private methodology boundary
+- cross-asset stress detection
+- volatility and drawdown pressure
+- multiblock dependence signals
+- macro-financial confirmation layers
+- commodity and gold stress anchors
+- research-desk scenario interpretation
 
-## What This Repository Does Not Reveal
+## Public/private boundary
 
-- Proprietary ShockBridge Pulse scoring logic
-- Private transmission-chain weights
-- Advanced commercial signal thresholds
-- Full private research methodology
-- Private report-generation engine
-- Client-facing product architecture
+This public repository is a sanitized evidence layer.
 
-## Repository Status
+It does not include:
 
-This repository is under active development as a public research evidence portfolio demonstrating macro-financial research engineering, reproducible Python workflows, model validation discipline, and decision-oriented reporting.
+- proprietary thresholds
+- private signal weights
+- full model implementation
+- internal validation logic
+- hedge-action rules
+- private research-desk decision logic
+- raw proprietary workflow files
 
-## Professional Positioning
+The private research engine is maintained separately.
 
-This project supports applications and direct outreach for roles such as:
+## Current public research interpretation
 
-- Quantitative Researcher
-- Macro-Financial Data Scientist
-- Financial Markets Data Scientist
-- Econometrician
-- Quantitative Analyst
-- Systemic Risk Researcher
-- Volatility and Derivatives Research Analyst
-- Machine Learning Researcher in Finance
+The current private research stack identifies a market-led stress-building environment, while broad macro confirmation remains incomplete. This supports research review and scenario analysis rather than claiming a fully confirmed systemic regime.
 
-## Author
+## Methodological pillars
 
-Rodolfo Pereira  
-ShockBridge Pulse  
-www.shockbridgepulse.com
+The private methodology combines:
+
+- high-dimensional market panels
+- rolling volatility and drawdown diagnostics
+- multiblock dependence analysis
+- MCCA-style bridge-pressure interpretation
+- horizon-spread comparison between medium-horizon and structural synchronization
+- macro confirmation using official macro series and a local cached LBMA AM gold benchmark
+- walk-forward machine-learning validation
+
+Only high-level methodology is described here. Exact rules remain private.
+
+## Status
+
+Public repository status: sanitized evidence layer.
+
+Private methodology status: locked v4.3 macro + LBMA gold confirmation sidecar on top of the locked v4.1 market diagnostic.
 
