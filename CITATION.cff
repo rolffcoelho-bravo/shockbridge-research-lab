@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use, reference, quote, adapt, or build from this project, please cite it as below."
+title: "ShockBridge Research Lab: Public Evidence Layer for Macro-Financial Shock Transmission Research"
+version: "v4.3-public-evidence-layer"
+date-released: "2026-06-18"
+url: "https://github.com/rolffcoelho-bravo/shockbridge-research-lab"
+authors:
+  - family-names: "Pereira"
+    given-names: "Rodolfo"
+preferred-citation:
+  type: software
+  authors:
+    - family-names: "Pereira"
+      given-names: "Rodolfo"
+  title: "ShockBridge Research Lab: Public Evidence Layer for Macro-Financial Shock Transmission Research"
+  year: 2026
+  url: "https://github.com/rolffcoelho-bravo/shockbridge-research-lab"

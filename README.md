@@ -59,3 +59,20 @@ Public repository status: sanitized evidence layer.
 
 Private methodology status: locked v4.3 macro + LBMA gold confirmation sidecar on top of the locked v4.1 market diagnostic.
 
+<!-- SHOCKBRIDGE_PUBLIC_FOOTER_START -->
+
+---
+
+## Citation and attribution
+
+If you use, reference, quote, adapt, or build from this public research evidence layer, please cite:
+
+Pereira, R. (2026). *ShockBridge Research Lab: Public Evidence Layer for Macro-Financial Shock Transmission Research* [Computer software]. GitHub. https://github.com/rolffcoelho-bravo/shockbridge-research-lab
+
+Author: Rodolfo Pereira  
+Website: www.shockbridgepulse.com  
+Email: rolffcoelho@hotmail.com  
+
+© 2026 Rodolfo Pereira. Free to read and use with attribution. Please cite the author and repository when referencing this work.
+
+<!-- SHOCKBRIDGE_PUBLIC_FOOTER_END -->
