@@ -1,23 +1,15 @@
 ﻿from pathlib import Path
 import subprocess
 import sys
-import os
 
 ROOT = Path(__file__).resolve().parents[1]
 
-OUTPUTS = [
-    ROOT / "figures" / "public_cross_asset_stress_breadth.png",
-    ROOT / "reports" / "public_research_brief.md",
-    ROOT / "reports" / "ShockBridge_Public_Cross_Asset_Stress_Breadth_Desk_Note.pdf",
-]
+PNG = ROOT / "figures" / "public_cross_asset_stress_breadth.png"
+MD = ROOT / "reports" / "public_research_brief.md"
+PDF = ROOT / "reports" / "ShockBridge_Public_Cross_Asset_Stress_Breadth_Desk_Note.pdf"
 
-def open_file(path: Path) -> None:
-    if sys.platform.startswith("win"):
-        os.startfile(str(path))
-    elif sys.platform == "darwin":
-        subprocess.run(["open", str(path)], check=False)
-    else:
-        subprocess.run(["xdg-open", str(path)], check=False)
+OUTPUTS = [PNG, MD, PDF]
+
 
 def verify_outputs() -> None:
     for path in OUTPUTS:
@@ -29,13 +21,25 @@ def verify_outputs() -> None:
 
         print(f"OK: {path.relative_to(ROOT)} ({path.stat().st_size} bytes)")
 
+
+def invoke_item(path: Path) -> None:
+    subprocess.Popen(
+        [
+            "powershell.exe",
+            "-NoProfile",
+            "-ExecutionPolicy",
+            "Bypass",
+            "-Command",
+            f"Invoke-Item -LiteralPath '{str(path)}'",
+        ],
+        cwd=str(ROOT),
+    )
+
+
 def main() -> None:
     open_outputs = "--open" in sys.argv
 
     builder = ROOT / "examples" / "build_real_data_desk_page.py"
-
-    if not builder.exists():
-        raise SystemExit(f"Missing builder script: {builder}")
 
     result = subprocess.run(
         [sys.executable, str(builder)],
@@ -51,9 +55,10 @@ def main() -> None:
 
     if open_outputs:
         print("Opening generated public outputs...")
-        for output in OUTPUTS:
-            print(f"Opening: {output.relative_to(ROOT)}")
-            open_file(output)
+        invoke_item(PNG)
+        invoke_item(MD)
+        invoke_item(PDF)
+
 
 if __name__ == "__main__":
     main()
