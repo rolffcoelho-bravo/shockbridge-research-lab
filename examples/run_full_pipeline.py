@@ -64,8 +64,10 @@ def main() -> None:
     check_required_outputs()
 
     if open_pdf:
-        print("Opening generated PDF...")
-        open_file(REQUIRED_OUTPUTS[2])
+        print("Opening generated public outputs...")
+        for output in REQUIRED_OUTPUTS:
+            open_file(output)
 
 if __name__ == "__main__":
     main()
+
