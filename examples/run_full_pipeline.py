@@ -1,52 +1,71 @@
-import argparse
-import os
+﻿from pathlib import Path
+import subprocess
 import sys
-import shutil
-from pathlib import Path
-
-from generate_public_research_brief import build_public_research_brief
-from build_real_data_desk_page import build_artifact
+import os
 
 ROOT = Path(__file__).resolve().parents[1]
-PIPELINE_CHART = ROOT / "reports" / "_real_public_stress_breadth_chart.png"
-README_CHART = ROOT / "figures" / "public_cross_asset_stress_breadth.png"
 
+REQUIRED_OUTPUTS = [
+    ROOT / "figures" / "public_cross_asset_stress_breadth.png",
+    ROOT / "reports" / "public_research_brief.md",
+    ROOT / "reports" / "ShockBridge_Public_Cross_Asset_Stress_Breadth_Desk_Note.pdf",
+]
 
-def open_file(path):
+def open_file(path: Path) -> None:
     if sys.platform.startswith("win"):
         os.startfile(str(path))
     elif sys.platform == "darwin":
-        import subprocess
         subprocess.run(["open", str(path)], check=False)
     else:
-        import subprocess
         subprocess.run(["xdg-open", str(path)], check=False)
 
+def check_required_outputs() -> None:
+    missing = []
+    empty = []
 
-def sync_readme_chart():
-    if not PIPELINE_CHART.exists():
-        raise FileNotFoundError(f"Pipeline chart was not generated: {PIPELINE_CHART}")
+    for path in REQUIRED_OUTPUTS:
+        if not path.exists():
+            missing.append(path)
+        elif path.stat().st_size <= 0:
+            empty.append(path)
 
-    README_CHART.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copyfile(PIPELINE_CHART, README_CHART)
-    return README_CHART
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Run the ShockBridge public real-data demo pipeline.")
-    parser.add_argument("--open", action="store_true", help="Open the generated PDF at the end.")
-    parser.add_argument("--refresh", action="store_true", help="Refresh real public market data.")
-    args = parser.parse_args()
-
-    md_output = build_public_research_brief()
-    pdf_output = build_artifact(refresh=args.refresh)
-    chart_output = sync_readme_chart()
+    if missing or empty:
+        lines = []
+        if missing:
+            lines.append("Missing outputs:")
+            lines.extend(f"  - {p.relative_to(ROOT)}" for p in missing)
+        if empty:
+            lines.append("Empty outputs:")
+            lines.extend(f"  - {p.relative_to(ROOT)}" for p in empty)
+        raise SystemExit("\n".join(lines))
 
     print("ShockBridge public demo complete.")
-    print(f"Generated Markdown brief: {md_output}")
-    print(f"Generated README chart: {chart_output}")
-    print(f"Generated real-data one-page PDF: {pdf_output}")
+    print(f"Generated README chart: {REQUIRED_OUTPUTS[0]}")
+    print(f"Generated Markdown brief: {REQUIRED_OUTPUTS[1]}")
+    print(f"Generated real-data one-page PDF: {REQUIRED_OUTPUTS[2]}")
 
-    if args.open:
+def main() -> None:
+    open_pdf = "--open" in sys.argv
+
+    builder = ROOT / "examples" / "build_real_data_desk_page.py"
+
+    if not builder.exists():
+        raise SystemExit(f"Missing builder script: {builder}")
+
+    result = subprocess.run(
+        [sys.executable, str(builder)],
+        cwd=str(ROOT),
+        check=False,
+    )
+
+    if result.returncode != 0:
+        raise SystemExit(result.returncode)
+
+    check_required_outputs()
+
+    if open_pdf:
         print("Opening generated PDF...")
-        open_file(pdf_output)
+        open_file(REQUIRED_OUTPUTS[2])
+
+if __name__ == "__main__":
+    main()
