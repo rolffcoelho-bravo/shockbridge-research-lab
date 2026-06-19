@@ -5,7 +5,7 @@ import os
 
 ROOT = Path(__file__).resolve().parents[1]
 
-REQUIRED_OUTPUTS = [
+OUTPUTS = [
     ROOT / "figures" / "public_cross_asset_stress_breadth.png",
     ROOT / "reports" / "public_research_brief.md",
     ROOT / "reports" / "ShockBridge_Public_Cross_Asset_Stress_Breadth_Desk_Note.pdf",
@@ -19,33 +19,18 @@ def open_file(path: Path) -> None:
     else:
         subprocess.run(["xdg-open", str(path)], check=False)
 
-def check_required_outputs() -> None:
-    missing = []
-    empty = []
-
-    for path in REQUIRED_OUTPUTS:
+def verify_outputs() -> None:
+    for path in OUTPUTS:
         if not path.exists():
-            missing.append(path)
-        elif path.stat().st_size <= 0:
-            empty.append(path)
+            raise SystemExit(f"Missing output: {path.relative_to(ROOT)}")
 
-    if missing or empty:
-        lines = []
-        if missing:
-            lines.append("Missing outputs:")
-            lines.extend(f"  - {p.relative_to(ROOT)}" for p in missing)
-        if empty:
-            lines.append("Empty outputs:")
-            lines.extend(f"  - {p.relative_to(ROOT)}" for p in empty)
-        raise SystemExit("\n".join(lines))
+        if path.stat().st_size <= 0:
+            raise SystemExit(f"Empty output: {path.relative_to(ROOT)}")
 
-    print("ShockBridge public demo complete.")
-    print(f"Generated README chart: {REQUIRED_OUTPUTS[0]}")
-    print(f"Generated Markdown brief: {REQUIRED_OUTPUTS[1]}")
-    print(f"Generated real-data one-page PDF: {REQUIRED_OUTPUTS[2]}")
+        print(f"OK: {path.relative_to(ROOT)} ({path.stat().st_size} bytes)")
 
 def main() -> None:
-    open_pdf = "--open" in sys.argv
+    open_outputs = "--open" in sys.argv
 
     builder = ROOT / "examples" / "build_real_data_desk_page.py"
 
@@ -61,13 +46,14 @@ def main() -> None:
     if result.returncode != 0:
         raise SystemExit(result.returncode)
 
-    check_required_outputs()
+    print("ShockBridge public demo complete.")
+    verify_outputs()
 
-    if open_pdf:
+    if open_outputs:
         print("Opening generated public outputs...")
-        for output in REQUIRED_OUTPUTS:
+        for output in OUTPUTS:
+            print(f"Opening: {output.relative_to(ROOT)}")
             open_file(output)
 
 if __name__ == "__main__":
     main()
-
