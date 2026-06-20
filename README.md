@@ -37,7 +37,11 @@ The project studies cross-market shock transmission using high-dimensional finan
 
 ## Research focus
 
-The lab is designed around one central question:
+I am a macro-financial researcher focused on high-dimensional financial and economic data, shock propagation, volatility regimes, and policy-relevant stress transmission. My work builds reproducible Python research pipelines to study how supply-side disruptions, market stress, derivatives signals, and cross-economy transmission channels affect growth, inflation, monetary policy, fiscal policy, and portfolio risk.
+
+My research interests include financial econometrics, high-dimensional data, dynamic dependence, shock transmission, volatility modelling, derivatives overlays, macro-financial spillovers, and the structural features that amplify or buffer shocks across economies.
+
+This lab is designed around one central question:
 
 > How does a shock travel across systems before it is fully priced?
 
